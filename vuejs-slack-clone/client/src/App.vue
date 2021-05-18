@@ -1,17 +1,37 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld v-if="!!server.status && server.status === 'ok'" msg="Welcome to Your Vue.js App"/>
+    <template v-else
+    <HelloWorld msg="Connecting..."/>
+    </template>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import ServerService from '@/services/Server'
 
 export default {
   name: 'App',
   components: {
     HelloWorld
+},
+data () {
+return {
+server: {},
+     }
+   },
+   mounted () {
+     this.getServerStatus()
+   },
+   methods: {
+     getServerStatus () {
+       ServerService.fetchStatus()
+         .then((response) => {
+           this.server = response.data
+         })
+     }
   }
 }
 </script>
