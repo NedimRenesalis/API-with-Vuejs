@@ -2,7 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld v-if="!!server.status && server.status === 'ok'" msg="Welcome to Your Vue.js App"/>
-    <template v-else
+    <template v-else>
     <HelloWorld msg="Connecting..."/>
     </template>
   </div>
