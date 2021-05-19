@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld v-if="!!server.status && server.status === 'ok'" msg="Welcome to Your Vue.js App"/>
+    <Vonage v-if="!!server.status && server.status === 'ok'" :server="server" />
     <template v-else>
     <HelloWorld msg="Connecting..."/>
     </template>
@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Vonage from '@/components/Vonage.vue'
 import ServerService from '@/services/Server'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Vonage,
 },
 data () {
 return {
